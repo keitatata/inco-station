@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>セキセイインコの紹介</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+</head>
+
+<script>
+  let dataUrl = "https://next.json-generator.com/api/json/get/E1Iv-zRj8"
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+      switch (xhr.readyState) {
+        case 0: // 未初期化状態.
+          console.log('uninitialized!');
+          break;
+        case 1: // データ送信中.
+          console.log('loading...');
+          break;
+        case 2: // 応答待ち.
+          console.log('loaded.');
+          break;
+        case 3: // データ受信中.
+          console.log('interactive... ' + xhr.responseText.length + ' bytes.');
+          break;
+        case 4: // データ受信完了.
+          if (xhr.status == 200 || xhr.status == 304) {
+            var data = xhr.responseText; 
+            console.log('COMPLETE! :' + data);            
+            var json = JSON.parse(data);
+            console.log(json)
+            let report = document.getElementById('report');
+
+            let name = document.createElement("h1");
+            let statement1 = document.createElement("p");
+            let statement2 = document.createElement("p");
+            let statement3 = document.createElement("p");
+
+            name.setAttribute("class", "report__title font");
+            statement1.setAttribute("class", "report__statement font");
+            statement2.setAttribute("class", "report__statement font");
+            statement3.setAttribute("class", "report__statement font");
+
+            name.innerHTML = json[1].name
+            statement1.innerHTML = json[1].statemant.first
+            statement2.innerHTML = json[1].statemant.second
+            statement3.innerHTML = json[1].statemant.third
+
+            report.appendChild(name)
+            report.appendChild(statement1)
+            report.appendChild(statement2)
+            report.appendChild(statement3)
+          } else {
+            console.log('Failed. HttpStatus: ' + xhr.statusText);
+          }
+          break;
+      }
+    };
+
+  function tryAjax
+    (url) {
+    xhr.open('GET', url, true);
+    xhr.send('hoge=piyo&moge=fuga');
+    slideshow_timer();
+  }
+
+  window.onload = function () {
+    tryAjax(dataUrl)
+  }
+    // 画像切り替えの処理
+  const pictures = ["./images/okame.jpg", "./images/okame2.jpg", "./images/okame3.jpg"]
+  var num = -1;
+  function slideshow_timer() {
+    if (num == 2) {
+      num = 0;
+    }
+    else {
+      num++;
+    }
+    document.getElementById("report__image").src = pictures[num];
+    setTimeout("slideshow_timer()", 3000);
+  }
+
+</script>
+
+<body>
+  <header class="header">
+    <h1 class="header__title">
+      <img class="header__icon" src="./images/オウムのフリーアイコン.png" alt="">
+      INCO STATION
+    </h1>
+    <nav>
+      <ul class="header__menu">
+        <a href="./top.html">
+          <button>
+            <li>トップ</li>
+          </button>
+        </a>
+        <a href="./incoList.html">
+          <button>
+            <li>インコ紹介</li>
+          </button>
+        </a>
+        <a href="#">
+            <button>
+              <li>エサ紹介</li>
+            </button>
+        </a>
+        <a href="#">
+          <button>
+            <li>お問い合わせ</li>
+          </button>
+        </a>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <article class="report" id="report">
+      <img class="report__image" src="./images/okame.jpg" alt="セキセイインコ" id="report__image">
+    </article>
+    <footer>
+      <small>Copyright &copy; INCO STATION, all rights reserved.</small>
+    </footer>
+  </div>
+</body>
+
+</html>

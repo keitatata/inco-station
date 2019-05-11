@@ -11,8 +11,6 @@
 </head>
 
 <script>
-
-  // ajaxの処理
   let dataUrl = "https://next.json-generator.com/api/json/get/E1Iv-zRj8"
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
@@ -47,10 +45,10 @@
           statement2.setAttribute("class", "report__statement font");
           statement3.setAttribute("class", "report__statement font");
 
-          name.innerHTML = json[0].name
-          statement1.innerHTML = json[0].statemant.first
-          statement2.innerHTML = json[0].statemant.second
-          statement3.innerHTML = json[0].statemant.third
+          name.innerHTML = json[2].name
+          statement1.innerHTML = json[2].statemant.first
+          statement2.innerHTML = json[2].statemant.second
+          statement3.innerHTML = json[2].statemant.third
 
           report.appendChild(name)
           report.appendChild(statement1)
@@ -72,11 +70,10 @@
   window.onload = function () {
     tryAjax(dataUrl);
     slideshow_timer();
-    console.log(document.getElementById('main').childNodes);
-
   }
+
   // 画像切り替えの処理
-  const pictures = ["./images/threeinco.jpeg", "./images/sekisei2.jpg", "./images/sekisei3.jpg"]
+  const pictures = ["./images/sazanami.jpg", "./images/sazanami2.jpg", "./images/sazanami3.jpg"]
   var num = -1;
   function slideshow_timer() {
     if (num == 2) {
@@ -110,9 +107,9 @@
           </button>
         </a>
         <a href="#">
-            <button>
-              <li>エサ紹介</li>
-            </button>
+          <button>
+            <li>エサ紹介</li>
+          </button>
         </a>
         <a href="#">
           <button>
@@ -125,11 +122,8 @@
 
   <div class="container">
     <article class="report" id="report">
-      <img class="report__image" src="./images/sekisei2.jpg" alt="セキセイインコ" id="report__image">
+      <img class="report__image" src="./images/sazanami.jpg" alt="セキセイインコ" id="report__image">
     </article>
-    <div id="main">
-        <p>5</p>
-    </div>
     <footer>
       <small>Copyright &copy; INCO STATION, all rights reserved.</small>
     </footer>
